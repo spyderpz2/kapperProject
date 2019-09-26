@@ -1,0 +1,37 @@
+
+.row{
+    width: 100%;
+    margin:0;
+    padding-right:1px;
+}
+.col-md-12{
+    height:100%;
+}
+.headerRow{
+    background-color: darkgray;
+}
+.headerTitle{
+    text-align: center;
+    max-width:100%;
+}
+.menuRow{
+    background-color: darkslategray;
+    height:3.7vw;
+}
+.homeBtn, .agendaBtn{
+    color: gray;
+    height:100%;
+    cursor: pointer;
+    text-align:center;
+    padding:0;
+    padding-right: 0.1vw;
+    display: inline-block;
+}
+.homeBtnText, .agendaBtnText{
+    font-size:2vw;
+    line-height:2;
+}
+.homeBtn:hover, .agendaBtn:hover{
+    background-color:#2a4747;
+    color:black;
+}
