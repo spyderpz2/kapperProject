@@ -19,8 +19,6 @@ class Agenda{
             $filledTime[$i]['chair'] = $row['chair'];
             $i++;
         }
-
-
         return $filledTime;
     }
 }

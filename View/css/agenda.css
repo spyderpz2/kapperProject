@@ -1,3 +1,18 @@
+.titleRow > div > .col-md-4{
+    display:inline-block;
+    width:33%;
+}
+.nextMonth, .prevMonth{
+    text-align:center;
+    margin:auto;
+    border-radius:5px;
+    width:40%;
+    height:2.2vw;
+    line-height:2vw;
+    cursor:pointer;
+    margin-top:1vw;
+}
+
 
 .agenda{
     top:0;
@@ -10,6 +25,7 @@
     margin-top:2vw;
 }
 .monthTitle{
+    width: 45%;
     text-align: center;
     margin: auto;
 }
@@ -37,7 +53,7 @@
     display: none;
 }
 .timetable{
-    display: inline-block;
+    display: inline-block;  
     margin:0;
     margin-top:3vw;
     padding:0;

@@ -1,14 +1,27 @@
 $(document).ready(function () {
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
-    createAgenda();
+    var date = new Date();
+    var currentMonth = date.getMonth()+1;
+    createAgenda(date);
 
 
+    $(".prevMonth").on("click", function(){
+        var date = new Date();
+        date.setMonth(currentMonth-1);
+        currentMonth = date.getMonth();
+        createAgenda(date);
+    });
+    $(".nextMonth").on("click", function(){
+        var date = new Date();
+        date.setMonth(currentMonth+1);
+        currentMonth = date.getMonth();
+        createAgenda(date);
+    });
     $(".days").on("click", function () {
-        $(".days").hide();
+        $(".days , .nextMonth, .prevMonth, .monthTitle").hide();
         $(".agenda").html("<div class='singleDay'><h2>" + this.id + "</h2></div>");
         $(".dayDisplay").show();
-
         $.post('../../controller/php/Agenda.php', {
             date: this.id
         }).done(function (responsedata) {
@@ -26,8 +39,8 @@ $(document).ready(function () {
     });
 
 
-    function createAgenda() {
-        var date = new Date();
+    function createAgenda(date) {
+        $(".agenda").html("");
         var month = date.getMonth() + 1;
         //add the month to the top of the page
         $(".monthTitle").html("<h2>" + monthNames[month - 1] + "</h2>");
