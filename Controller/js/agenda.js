@@ -17,7 +17,12 @@ $(document).ready(function () {
         date.setMonth(currentMonth+1);
         createAgenda(date);
     });
-
+    $(".treatmentDiv, .namesDiv").on("click", function(){
+        if($(".nameOptions").val() != 'emptyOption' && $(".treatmentOptions").val() != 'emptyOption'){
+            $(".timeDisplay").show();
+            $(".planTimeBtn").show();
+        }
+    });
 
 
 
@@ -53,14 +58,21 @@ $(document).ready(function () {
             data: {getOptions: true, date: date}
         }).done(function (responsedata) {
             $(".optionDisplay").show();
-            const optionsDiv  = $('.optionsDiv');
+            const namesDiv  = $('.namesDiv');
+            const treatmentDiv = $('.treatmentDiv');
             var optionsObj = JSON.parse(responsedata);
-            optionsDiv.append("<select class='form-control nameOptions'>");
+            namesDiv.append("<select class='form-control nameOptions'>");
             $(".nameOptions").append("<option value='emptyOption'>Choose a name</option>");
-            for(var i = 0; i< optionsObj.length;i++){
-                $(".nameOptions").append("<option value='"+optionsObj[i]+"'>"+optionsObj[i]+"</option>");
+            for(var i = 0; i< optionsObj['names'].length;i++){
+                $(".nameOptions").append("<option value='"+optionsObj['names'][i]['id']+"'>"+optionsObj['names'][i]['name']+"</option>");
             }
-            optionsDiv.append("</select>");
+            namesDiv.append("</select>");
+            treatmentDiv.append("<select class='form-control treatmentOptions'>");
+            $(".treatmentOptions").append("<option value='emptyOption'>Choose a treatment</option>");
+            for(var i = 0; i< optionsObj['treatments'].length;i++){
+                $(".treatmentOptions").append("<option value='"+optionsObj['treatments'][i]['id']+"'>"+optionsObj['treatments'][i]['name']+"</option>");
+            }
+            treatmentDiv.append("</select>");
 
         });
     }
@@ -112,13 +124,15 @@ $(document).ready(function () {
 
 
     $(".planTimeBtn").on("click", function () {
+        var hairdresserId = $(".nameOptions").val();
+        var treatmentId = $(".treatmentOptions").val();
         var chair = selectedStartTime[0].id.substr(5)[0];
         var starttime = selectedStartTime[0].id.substr(5).substr(-2);
         var endtime = selectedEndTime[0].id.substr(5).substr(-2);
         $.ajax({
             type: "post",
             url: "../../controller/php/agenda.php",
-            data: {setTime: true, starttime: starttime, endtime: endtime, chair: chair, date: date}
+            data: {setTime: true, treatment: treatmentId, hairdresser: hairdresserId, starttime: starttime, endtime: endtime, chair: chair, date: date}
         }).done(function (responsedata) {
             location.reload();
         });

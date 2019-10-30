@@ -40,9 +40,8 @@ include_once("../../Controller/php/Agenda.php")
 <div class="row">
     <div class="col-md-12 dayDisplay">
         <div class="col-md-8 optionDisplay">
-            <div class='col-md-2'></div>
-            <div class='col-md-4 optionsDiv'></div>
-            <div class='col-md-2'></div>
+            <div class='col-md-4 namesDiv'></div>
+            <div class='col-md-4 treatmentDiv'></div>
         </div>
         <div class="col-md-8 timeDisplay">
             <?php

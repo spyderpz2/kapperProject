@@ -36,10 +36,7 @@
     text-align: center;
     margin: auto;
 }
-.optionsDiv{
-    text-align:center;
-    padding-top:1vw;
-}
+
 .days{
     display:inline-block;
     width:12.5%;
@@ -62,6 +59,12 @@
     padding-right:1.3vw;
     padding-left:1.3vw;
     display: none;
+}
+.namesDiv, .treatmentDiv{
+    min-width: 48%;
+    display: inline-block;
+    text-align:center;
+    padding-top:1vw;
 }
 .optionDisplay{
     margin: 0 auto;
