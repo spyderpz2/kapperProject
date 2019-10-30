@@ -2,7 +2,7 @@
     display:inline-block;
     width:33%;
 }
-.nextMonth, .prevMonth{
+.nextMonth, .prevMonth, .planTimeBtn{
     text-align:center;
     margin:auto;
     border-radius:5px;
@@ -12,8 +12,15 @@
     cursor:pointer;
     margin-top:1vw;
 }
-
-
+.selectedTime{
+    background-color: green;
+}
+.occupiedTime{
+    background-color: red;
+}
+.availableTime{
+    background-color:white;
+}
 .agenda{
     top:0;
     bottom: 0;
@@ -28,6 +35,10 @@
     width: 45%;
     text-align: center;
     margin: auto;
+}
+.optionsDiv{
+    text-align:center;
+    padding-top:1vw;
 }
 .days{
     display:inline-block;
@@ -47,10 +58,13 @@
     width: 100%;
     height:25px;
 }
-.dayDisplay{
+.dayDisplay, .timeDisplay, .optionDisplay, .planTimeBtn{
     padding-right:1.3vw;
     padding-left:1.3vw;
     display: none;
+}
+.optionDisplay{
+    margin: 0 auto;
 }
 .timetable{
     display: inline-block;  

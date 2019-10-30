@@ -30,8 +30,20 @@ include_once("../../Controller/php/Agenda.php")
 
 
 </div>
+
+<div class="row alertRow">
+    <div class="alertMessage">
+    </div>
+
+</div>
+
 <div class="row">
     <div class="col-md-12 dayDisplay">
+        <div class="col-md-8 optionDisplay">
+            <div class='col-md-2'></div>
+            <div class='col-md-4 optionsDiv'></div>
+            <div class='col-md-2'></div>
+        </div>
         <div class="col-md-8 timeDisplay">
             <?php
             for ($y = 1; $y <= 4; $y++) {
@@ -49,7 +61,7 @@ include_once("../../Controller/php/Agenda.php")
                         $hour = '0' . $hour;
                     }
                     $time = $hour . '' . $minutes;
-                    echo '<div id="chair' . $y . $i . '" class="timeline"><p>' . $time . '</p></div>';
+                    echo '<div id="chair' . $y . $i . '" class="timeline availableTime"><p>' . $time . '</p></div>';
                 }
                 echo '</div>';
             }
@@ -57,6 +69,9 @@ include_once("../../Controller/php/Agenda.php")
 
 
     </div>
+        <div class="planTimeBtn btn-primary">
+            <p>Plan afspraak</p>
+        </div>
 </div>
 </body>
 
