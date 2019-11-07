@@ -71,10 +71,10 @@
 }
 .timetable{
     display: inline-block;  
-    margin:0;
+    margin:3px;
     margin-top:3vw;
     padding:0;
-    max-width:24.6%;
+    max-width:24%;
 }
 .timeDisplay{
     margin:auto;

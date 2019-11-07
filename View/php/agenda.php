@@ -40,31 +40,10 @@ include_once("../../Controller/php/Agenda.php")
 <div class="row">
     <div class="col-md-12 dayDisplay">
         <div class="col-md-8 optionDisplay">
-            <div class='col-md-4 namesDiv'></div>
             <div class='col-md-4 treatmentDiv'></div>
         </div>
         <div class="col-md-8 timeDisplay">
-            <?php
-            for ($y = 1; $y <= 4; $y++) {
-                echo '<div class="col-md-2 timetable" id="chair""' . $y . '">';
-                echo '<p class="chairTitle">Chair ' . $y . '</p>';
-                for ($i = 14; $i <= 36; $i++) {
-                    $alltime = $i * 30;
-                    $hour = floor($alltime / 60);
-                    $minutes = $alltime % 60;
-                    if ($minutes == 0) {
-                        $minutes = '00';
-                    }
-                    $minutes = ':' . $minutes;
-                    if ($hour < 10) {
-                        $hour = '0' . $hour;
-                    }
-                    $time = $hour . '' . $minutes;
-                    echo '<div id="chair' . $y . $i . '" class="timeline availableTime"><p>' . $time . '</p></div>';
-                }
-                echo '</div>';
-            }
-            ?>
+        </div>
 
 
     </div>

@@ -28,6 +28,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RbTNQXEDKnWajjpLlG3MkTPEIu" />
@@ -63,6 +68,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\HBO\kapperProject" />
       <recent name="C:\wamp64\www\home\kapperProject\View\php" />
       <recent name="C:\wamp64\www\home\kapperProject\Controller\php" />
     </key>
@@ -129,7 +135,14 @@
       <workItem from="1572276448575" duration="5149000" />
       <workItem from="1572352926794" duration="5422000" />
       <workItem from="1572376834137" duration="4515000" />
-      <workItem from="1572430028153" duration="6082000" />
+      <workItem from="1572430028153" duration="9668000" />
+      <workItem from="1572527096103" duration="232000" />
+      <workItem from="1572527567482" duration="4860000" />
+      <workItem from="1572601552026" duration="789000" />
+      <workItem from="1572784489234" duration="3661000" />
+      <workItem from="1572855916028" duration="3385000" />
+      <workItem from="1572958794479" duration="5060000" />
+      <workItem from="1573112815798" duration="748000" />
     </task>
     <task id="LOCAL-00001" summary="updated the calander">
       <created>1570633440963</created>
@@ -145,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572431660302</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updated the calander">
+      <created>1572436891255</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572436891255</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

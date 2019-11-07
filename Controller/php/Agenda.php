@@ -12,21 +12,27 @@ if(isset($_POST['setTime']) && $_POST['setTime']) {
 if(isset($_POST['getOptions']) && $_POST['getOptions']){
     echo json_encode($agenda->getOptions($_POST['date']));
 }
+if(isset($_POST['getHairdresserNames']) && $_POST['getHairdresserNames']){
+    echo json_encode($agenda->getHairdresserNames());
+}
+
+
 class Agenda{
     function getAgenda($date){
         global $pdo;
         $date = preg_split ("/\-/", $date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
+
         $agendaquery = $pdo->prepare("SELECT * FROM agenda WHERE date = :date");
         $agendares = $agendaquery->execute(['date' =>$date]);
         $i = 0;
         while($row = $agendaquery->fetch()){
             $filledTime[$i]['starttime'] = $row['starttime'];
             $filledTime[$i]['endtime'] = $row['endtime'];
-            $filledTime[$i]['chair'] = $row['chair'];
+            $filledTime[$i]['hairdresserId'] = $row['hairdresserId'];
             $i++;
         }
-        return $filledTime;
+        return $row;
     }
     function getOptions($date){
         global $pdo;
@@ -58,5 +64,15 @@ class Agenda{
         $agendaquery = $pdo->prepare("INSERT INTO agenda (chair, starttime, endtime, date, hairdresserId, treatmentId) VALUES(:chair, :starttime, :endtime, :date, :treatment, :hairdresser)");
         $agendares = $agendaquery->execute(['date' =>$date, 'chair'=> $chair, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
         return true;
+    }
+    function getHairdresserNames(){
+        global $pdo;
+        $hairdressers = array();
+        $hairdresserquery = $pdo->prepare("SELECT * FROM hairdresser");
+        $hairdresserres = $hairdresserquery->execute();
+        while($row = $hairdresserquery->fetch()){
+        array_push( $hairdressers, $row['name']);
+        }
+        return $hairdressers;
     }
 }
