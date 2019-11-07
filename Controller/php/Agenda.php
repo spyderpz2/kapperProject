@@ -17,10 +17,10 @@ class Agenda{
         global $pdo;
         $date = preg_split ("/\-/", $date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
-        $agendaquery = $pdo->prepare("SELECT * FROM agenda WHERE date = :date");
-        $agendares = $agendaquery->execute(['date' =>$date]);
+        $agendaQuery = $pdo->prepare("SELECT * FROM agenda WHERE date = :date");
+        $agendaResults = $agendaQuery->execute(['date' =>$date]);
         $i = 0;
-        while($row = $agendaquery->fetch()){
+        while($row = $agendaQuery->fetch()){
             $filledTime[$i]['starttime'] = $row['starttime'];
             $filledTime[$i]['endtime'] = $row['endtime'];
             $filledTime[$i]['chair'] = $row['chair'];
@@ -32,18 +32,18 @@ class Agenda{
         global $pdo;
         $date = preg_split ("/\-/", $date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
-        $dresserNamequery = $pdo->prepare("SELECT * FROM hairdresser");
-        $dresserNameres = $dresserNamequery->execute();
+        $dresserNameQuery = $pdo->prepare("SELECT * FROM hairdresser");
+        $dresserNameResults = $dresserNameQuery->execute();
         $i = 0;
-        while($row = $dresserNamequery->fetch()){
+        while($row = $dresserNameQuery->fetch()){
             $options['names'][$i]['id'] = $row['id'];
             $options['names'][$i]['name'] = $row['name'];
             $i++;
         }
-        $treatmentquery = $pdo->prepare("SELECT * FROM treatment");
-        $treatmentres = $treatmentquery->execute();
+        $treatmentQuery = $pdo->prepare("SELECT * FROM treatment");
+        $treatmentResults = $treatmentQuery->execute();
         $i = 0;
-        while($row = $treatmentquery->fetch()){
+        while($row = $treatmentQuery->fetch()){
             $options['treatments'][$i]['name'] = $row['name'];
             $options['treatments'][$i]['id'] = $row['id'];
             $i++;
@@ -54,9 +54,15 @@ class Agenda{
         global $pdo;
         $date = explode("-",$date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
+           $availabilityQuery = $pdo->prepare("SELECT * FROM agenda WHERE hairdresserId = :hairdresser AND date = :date AND :starttime BETWEEN starttime AND endtime OR starttime = :starttime2");
+        $availabilityResults =  $availabilityQuery->execute(['hairdresser' => $hairdresser, 'date' => $date, 'starttime' => $starttime, 'starttime2' => $starttime]);
+        if($availabilityQuery->fetch()){
+            return false;
+        }else{
+            $agendaQuery = $pdo->prepare("INSERT INTO agenda (chair, starttime, endtime, date, hairdresserId, treatmentId) VALUES(:chair, :starttime, :endtime, :date, :treatment, :hairdresser)");
+            $agendaResults = $agendaQuery->execute(['date' =>$date, 'chair'=> $chair, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
+            return true;
 
-        $agendaquery = $pdo->prepare("INSERT INTO agenda (chair, starttime, endtime, date, hairdresserId, treatmentId) VALUES(:chair, :starttime, :endtime, :date, :treatment, :hairdresser)");
-        $agendares = $agendaquery->execute(['date' =>$date, 'chair'=> $chair, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
-        return true;
+        }
     }
 }

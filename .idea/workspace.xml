@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="updated the calander">
+    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="Changed the chairs system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/js/agenda.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/js/agenda.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/php/Agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/php/Agenda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/css/agenda.css" beforeDir="false" afterPath="$PROJECT_DIR$/View/css/agenda.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/php/agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/agenda.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -166,6 +164,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated the calander" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the calander" />
+    <MESSAGE value="Changed the chairs system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the chairs system" />
   </component>
 </project>

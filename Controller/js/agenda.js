@@ -134,7 +134,13 @@ $(document).ready(function () {
             url: "../../controller/php/agenda.php",
             data: {setTime: true, treatment: treatmentId, hairdresser: hairdresserId, starttime: starttime, endtime: endtime, chair: chair, date: date}
         }).done(function (responsedata) {
-            location.reload();
+            console.log(responsedata);
+            if(responsedata == 'false'){
+                alert("This hairdresser is already occupied for this time");
+
+            }else{
+                location.reload();
+            }
         });
     });
 });
