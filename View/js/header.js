@@ -6,7 +6,4 @@ $(document).ready(function () {
         var destination = $(this).children("h1").text();
         document.location.href = "../php/"+destination+".php";
     });
-
-
-
 });

@@ -18,6 +18,7 @@ include_once("../../Model/php/core.php");
     </div>
 </div>
 <!--Standaard menu-->
+<!--all items that get added to this div get automatically given the correct styling and functionality(header.js)-->
 <div class="row menuRow">
     <div class="col-md-12">
         <div class="col-md-2 homeBtn">
