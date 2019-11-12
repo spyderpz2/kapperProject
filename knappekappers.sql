@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 30 okt 2019 om 12:00
+-- Gegenereerd op: 12 nov 2019 om 08:49
 -- Serverversie: 5.7.14
 -- PHP-versie: 5.6.25
 
@@ -41,7 +41,11 @@ CREATE TABLE `agenda` (
 --
 
 INSERT INTO `agenda` (`id`, `chair`, `date`, `hairdresserId`, `treatmentId`, `starttime`, `endtime`) VALUES
-(24, 2, '2019-09-02', 2, 2, 14, 19);
+(27, 1, '2019-10-03', 1, 1, 14, 18),
+(28, 2, '2019-10-03', 1, 1, 19, 23),
+(29, 3, '2019-10-03', 1, 1, 25, 30),
+(30, 2, '2019-10-03', 1, 1, 32, 34),
+(31, 2, '2019-10-04', 1, 1, 15, 20);
 
 -- --------------------------------------------------------
 
@@ -120,7 +124,7 @@ ALTER TABLE `treatment`
 -- AUTO_INCREMENT voor een tabel `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT voor een tabel `hairdresser`
 --

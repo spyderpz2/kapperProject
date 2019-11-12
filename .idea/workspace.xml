@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="optimized the reservation system">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/js/agenda.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/js/agenda.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/js/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/View/js/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/php/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/header.php" afterDir="false" />
-    </list>
+    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="optimized the reservation system" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +127,7 @@
       <workItem from="1573129477864" duration="827000" />
       <workItem from="1573201154887" duration="3881000" />
       <workItem from="1573387954518" duration="67000" />
+      <workItem from="1573548267098" duration="192000" />
     </task>
     <task id="LOCAL-00001" summary="updated the calander">
       <created>1570633440963</created>
@@ -154,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573123340693</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="optimized the reservation system">
+      <created>1573548325339</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1573548325339</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
