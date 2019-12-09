@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 30 okt 2019 om 12:00
+-- Gegenereerd op: 07 nov 2019 om 10:10
 -- Serverversie: 5.7.14
 -- PHP-versie: 5.6.25
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `agenda` (
   `id` int(11) NOT NULL,
-  `chair` int(11) NOT NULL,
   `date` date NOT NULL,
   `hairdresserId` int(11) NOT NULL,
   `treatmentId` int(11) NOT NULL,
@@ -40,8 +39,11 @@ CREATE TABLE `agenda` (
 -- Gegevens worden geëxporteerd voor tabel `agenda`
 --
 
-INSERT INTO `agenda` (`id`, `chair`, `date`, `hairdresserId`, `treatmentId`, `starttime`, `endtime`) VALUES
-(24, 2, '2019-09-02', 2, 2, 14, 19);
+INSERT INTO `agenda` (`id`, `date`, `hairdresserId`, `treatmentId`, `starttime`, `endtime`) VALUES
+(24, '2019-09-02', 2, 2, 14, 19),
+(25, '2019-09-03', 1, 1, 16, 21),
+(26, '2019-09-03', 1, 2, 14, 20),
+(27, '2019-09-03', 1, 2, 16, 22);
 
 -- --------------------------------------------------------
 
@@ -61,11 +63,8 @@ CREATE TABLE `hairdresser` (
 INSERT INTO `hairdresser` (`id`, `name`) VALUES
 (1, 'Monica'),
 (2, 'Erica'),
-(3, 'Rita'),
 (4, 'Tina'),
-(5, 'Sandra'),
-(6, 'Mary'),
-(7, 'Jessica');
+(5, 'Sandra');
 
 -- --------------------------------------------------------
 
@@ -120,7 +119,7 @@ ALTER TABLE `treatment`
 -- AUTO_INCREMENT voor een tabel `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT voor een tabel `hairdresser`
 --
