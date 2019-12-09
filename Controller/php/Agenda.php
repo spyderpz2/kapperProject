@@ -7,7 +7,7 @@ if(isset($_POST['getDay']) && $_POST['getDay']) {
     echo json_encode($agenda->getAgenda($_POST['date']));
 }
 if(isset($_POST['setTime']) && $_POST['setTime']) {
-    echo json_encode($agenda->setTime($_POST['starttime'],$_POST['endtime'],$_POST['chair'],$_POST['date'],$_POST['treatment'],$_POST['hairdresser']));
+    echo json_encode($agenda->setTime($_POST['starttime'],$_POST['endtime'],$_POST['date'],$_POST['treatment'],$_POST['hairdresser']));
 }
 if(isset($_POST['getOptions']) && $_POST['getOptions']){
     echo json_encode($agenda->getOptions($_POST['date']));
@@ -32,7 +32,8 @@ class Agenda{
             $filledTime[$i]['hairdresserId'] = $row['hairdresserId'];
             $i++;
         }
-        return $row;
+
+        return $filledTime;
     }
     function getOptions($date){
         global $pdo;
@@ -56,13 +57,13 @@ class Agenda{
         }
         return $options;
     }
-    function setTime($starttime,$endtime,$chair,$date,$hairdresser,$treatment){
+    function setTime($starttime,$endtime,$date,$hairdresser,$treatment){
         global $pdo;
         $date = explode("-",$date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
 
-        $agendaquery = $pdo->prepare("INSERT INTO agenda (chair, starttime, endtime, date, hairdresserId, treatmentId) VALUES(:chair, :starttime, :endtime, :date, :treatment, :hairdresser)");
-        $agendares = $agendaquery->execute(['date' =>$date, 'chair'=> $chair, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
+        $agendaquery = $pdo->prepare("INSERT INTO agenda ( starttime, endtime, date, hairdresserId, treatmentId) VALUES( :starttime, :endtime, :date, :treatment, :hairdresser)");
+        $agendares = $agendaquery->execute(['date' =>$date, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
         return true;
     }
     function getHairdresserNames(){

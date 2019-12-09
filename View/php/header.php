@@ -26,5 +26,8 @@ include_once("../../Model/php/core.php");
         <div class="col-md-2 agendaBtn">
             <h1 class="agendaBtnText">Agenda</h1>
         </div>
+        <div class="col-md-2 contactBtn">
+            <h1 class="contactBtnText">Contact</h1>
+        </div>
     </div>
 </div>

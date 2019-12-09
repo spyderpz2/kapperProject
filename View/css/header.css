@@ -18,7 +18,11 @@
     background-color: darkslategray;
     height:3.7vw;
 }
-.homeBtn, .agendaBtn{
+.contactBtn{
+    position:absolute;
+    right:10px;
+}
+.homeBtn, .agendaBtn, .contactBtn{
     color: gray;
     height:100%;
     cursor: pointer;
@@ -27,11 +31,11 @@
     padding-right: 0.1vw;
     display: inline-block;
 }
-.homeBtnText, .agendaBtnText{
+.homeBtnText, .agendaBtnText, .contactBtnText{
     font-size:2vw;
     line-height:2;
 }
-.homeBtn:hover, .agendaBtn:hover{
+.homeBtn:hover, .contactBtn:hover, .agendaBtn:hover{
     background-color:#2a4747;
     color:black;
 }
