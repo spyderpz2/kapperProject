@@ -1,4 +1,10 @@
+body, html{
+    min-height:100vh;
+}
 
+.title{
+    font-size:3vw;
+}
 .row{
     width: 100%;
     margin:0;
@@ -19,8 +25,13 @@
     height:3.7vw;
 }
 .contactBtn{
-    position:absolute;
     right:10px;
+}
+.agendaBtn{
+    left:17%;
+}
+.agendaBtn, .homeBtn, .contactBtn{
+    position: absolute;
 }
 .homeBtn, .agendaBtn, .contactBtn{
     color: gray;
@@ -38,4 +49,20 @@
 .homeBtn:hover, .contactBtn:hover, .agendaBtn:hover{
     background-color:#2a4747;
     color:black;
+}
+.pageWrapper{
+    position: relative;
+    min-height: 100vh;
+}
+.contentWrapper{
+    min-height: 76.2vh;
+}
+/* On screen change below */
+@media only screen and (max-width: 770px) {
+    .title{
+        font-size:5.5vw;
+    }
+    .menuRow{
+        height:4.65vw;
+    }
 }

@@ -8,6 +8,7 @@ include_once("../../Model/php/core.php");
     <link rel="stylesheet" href="../css/header.css">
 </header>
 <!--Standaard header-->
+<div class="pageWrapper">
 <div class="row headerRow">
     <div class="col-md-12">
         <div class="col-md-2"></div>

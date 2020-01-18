@@ -1,16 +1,22 @@
 .titleRow > div > .col-md-4{
     display:inline-block;
-    width:33%;
+    width:32%;
 }
-.nextMonth, .prevMonth, .planTimeBtn{
+.timeShadow{
+    box-shadow:0.2vw 0.4vh 0.2vw 0.4vh;
+}
+.nextMonth, .prevMonth, .planTimeBtn, .removeTimeBtn{
     text-align:center;
     margin:auto;
     border-radius:5px;
-    width:40%;
+    width:11vw;
     height:2.2vw;
     line-height:2vw;
     cursor:pointer;
     margin-top:1vw;
+}
+.nextMonth p, .prevMonth p{
+    font-size:1vw;
 }
 .selectedTime{
     background-color: green;
@@ -30,13 +36,16 @@
     width:80%;
     border:2px solid black;
     margin-top:2vw;
+    margin-bottom:20vh;
 }
 .monthTitle{
     width: 45%;
     text-align: center;
     margin: auto;
 }
-
+.monthTitle h2{
+    font-size:3vw;
+}
 .days{
     display:inline-block;
     width:12.5%;
@@ -45,8 +54,13 @@
     border:2px solid black;
     overflow: hidden;
 }
+.days:hover{
+    box-shadow: 0.2vw 0.4vh;
+
+}
 .singleDay > h2{
     text-align: center;
+
 }
 
 .timeline{
@@ -55,10 +69,13 @@
     width: 100%;
     height:25px;
 }
-.dayDisplay, .timeDisplay, .optionDisplay, .planTimeBtn{
+.dayDisplay, .optionDisplay, .planTimeBtn, .removeTimeBtn{
     padding-right:1.3vw;
     padding-left:1.3vw;
     display: none;
+}
+.planTimeBtn, .removeTimeBtn{
+    margin-bottom:1vw;
 }
 .namesDiv, .treatmentDiv{
     min-width: 48%;
@@ -78,4 +95,38 @@
 }
 .timeDisplay{
     margin:auto;
+}
+.removeAbleTime{
+    cursor:pointer;
+}
+
+/* On screen change below */
+@media only screen and (max-width: 770px) {
+    .nextMonth, .prevMonth, .planTimeBtn, .removeTimeBtn{
+        text-align:center;
+        margin:auto;
+        border-radius:5px;
+        width:18vw;
+        height:3.5vw;
+        line-height:3vw;
+        cursor:pointer;
+        margin-top:1vw;
+    }
+    .timetable{
+        max-width:45%;
+    }
+    .nextMonth p, .prevMonth p{
+        font-size:1.7vw;
+    }
+    .menuRow .col-md-12 .col-md-2{
+        max-width: 16%;
+    }
+    .days{
+        width:20%;
+    }
+    .agenda{
+        margin-bottom:5vh;
+    }
+
+
 }

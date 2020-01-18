@@ -5,15 +5,27 @@ $agenda =  new Agenda();
 
 if(isset($_POST['getDay']) && $_POST['getDay']) {
     echo json_encode($agenda->getAgenda($_POST['date']));
+    $_POST['getDay'] = false;
 }
 if(isset($_POST['setTime']) && $_POST['setTime']) {
     echo json_encode($agenda->setTime($_POST['starttime'],$_POST['endtime'],$_POST['date'],$_POST['treatment'],$_POST['hairdresser']));
+    $_POST['setTime'] = false;
+}
+if(isset($_POST['removeTime']) && $_POST['removeTime']) {
+    echo json_encode($agenda->removeTime($_POST['starttime'],$_POST['endtime'],$_POST['date']));
+    $_POST['removeTime'] = false;
 }
 if(isset($_POST['getOptions']) && $_POST['getOptions']){
     echo json_encode($agenda->getOptions($_POST['date']));
+    $_POST['getOptions'] = false;
 }
 if(isset($_POST['getHairdresserNames']) && $_POST['getHairdresserNames']){
     echo json_encode($agenda->getHairdresserNames());
+    $_POST['getHairdresserNames'] = false;
+}
+if(isset($_POST['checkDeletable']) && $_POST['checkDeletable']){
+    echo json_encode($agenda->checkDeletable($_POST['date']));
+    $_POST['checkDeletable'] = false;
 }
 
 
@@ -52,19 +64,46 @@ class Agenda{
         $i = 0;
         while($row = $treatmentquery->fetch()){
             $options['treatments'][$i]['name'] = $row['name'];
+            $options['treatments'][$i]['duration'] = $row['duration'];
             $options['treatments'][$i]['id'] = $row['id'];
             $i++;
         }
         return $options;
     }
-    function setTime($starttime,$endtime,$date,$hairdresser,$treatment){
+    function checkDeletable($date){
+        $date = explode("-",$date);
+        $date = $date[2].'-'.$date[1].'-'.$date[0];
+        if(isset($_COOKIE[$date])){
+            return $_COOKIE[$date];
+        }
+    }
+
+    function setTime($starttime,$endtime,$date,$treatment,$hairdresser){
         global $pdo;
         $date = explode("-",$date);
         $date = $date[2].'-'.$date[1].'-'.$date[0];
-
-        $agendaquery = $pdo->prepare("INSERT INTO agenda ( starttime, endtime, date, hairdresserId, treatmentId) VALUES( :starttime, :endtime, :date, :treatment, :hairdresser)");
-        $agendares = $agendaquery->execute(['date' =>$date, 'starttime'=> $starttime, 'endtime'=>$endtime, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
+        $agendaquery = $pdo->prepare("INSERT INTO agenda ( starttime, endtime, date, hairdresserId, treatmentId) VALUES( :starttime, :endtime, :date, :hairdresser, :treatment)");
+        $agendares = $agendaquery->execute([ 'starttime'=> $starttime, 'endtime'=>$endtime,'date' =>$date, 'treatment'=>$treatment, 'hairdresser'=>$hairdresser]);
+        if(isset($_COOKIE[$date])){
+            $cookieTimes = $_COOKIE[$date];
+        }else{
+            $cookieTimes = '';
+        }
+        setcookie($date,$cookieTimes.'_chair'.$hairdresser.''.$starttime.'-'.'chair'.$hairdresser.''.$endtime, time() + (86400 * 365),"/");
         return true;
+    }
+    function removeTime($starttime,$endtime,$date){
+        global $pdo;
+        $date = explode("-",$date);
+        $date = $date[2].'-'.$date[1].'-'.$date[0];
+        $hairdresser = substr($starttime, 0,1);
+        $starttime = substr($starttime,1,2);
+        $endtime = substr($endtime, 1,2);
+        $removeTimequery = $pdo->prepare("DELETE FROM agenda WHERE date = :date AND starttime = :starttime AND endtime = :endtime AND hairdresserId = :hairdresser");
+        $removeTimequery->execute(['date' => $date, 'starttime' => $starttime, 'endtime' => $endtime, 'hairdresser' => $hairdresser]);
+        $_COOKIE[$date] = str_replace('_chair'.$hairdresser.''.$starttime.'-'.'chair'.$hairdresser.''.$endtime,'', $_COOKIE[$date]);
+        setcookie($date, $_COOKIE[$date], time() +(86400 *365),"/");
+        return  '_chair'.$hairdresser.''.$starttime.'-'.'chair'.$hairdresser.''.$endtime;
     }
     function getHairdresserNames(){
         global $pdo;

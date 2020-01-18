@@ -2,13 +2,14 @@ $(document).ready(function () {
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
     var date = new Date();
+    var selected = false;
     var hairdressers = [];
+    var treatments = [];
     var hairdresserId;
     var currentMonth = date.getMonth();
     var currentYear = date.getFullYear();
     var selectedStartTime;
     var selectedEndTime;
-    var generatedPromise;
     createAgenda(date);
 
 
@@ -22,12 +23,7 @@ $(document).ready(function () {
         date.setMonth(currentMonth + 1);
         createAgenda(date);
     });
-    $(".treatmentDiv, .namesDiv").on("click", function () {
-        if ($(".nameOptions").val() != 'emptyOption' && $(".treatmentOptions").val() != 'emptyOption') {
-            $(".timeDisplay").show();
-            $(".planTimeBtn").show();
-        }
-    });
+
 
 
 
@@ -38,28 +34,29 @@ $(document).ready(function () {
         var options = getOptions(date);
         $(".days , .nextMonth, .prevMonth, .monthTitle").hide();
         $(".agenda").html("<div class='singleDay'><h2>" + this.id + "</h2></div>");
+        $(".agenda").css("margin-bottom", "2vh");
         $(".dayDisplay").show();
         var timeDisplay = $(".timeDisplay");
-            for (var y = 1; y <= 4; ++y) {
-                timeDisplay.append('<div class="col-md-2 timetable" id="chair' + y + '">' +
-                    '<p class="chairTitle">' + hairdressers[y - 1] + '</p>');
-                for (var i = 14; i <= 36; i++) {
-                    var alltime = i * 30;
-                    var hour = Math.floor(alltime / 60);
-                    var minutes = alltime % 60;
-                    if (minutes == 0) {
-                        minutes = '00';
-                    }
-                    minutes = ':' + minutes;
-                    if (hour < 10) {
-                        hour = '0' + hour;
-                    }
-                    var time = hour + '' + minutes;
-                    $("#chair" + y).append('<div id="chair' + y + i + '" class="timeline availableTime"><p>' + time + '</p></div>');
+        for (var y = 1; y <= 4; ++y) {
+            timeDisplay.append('<div class="col-md-2 timetable" id="chair' + y + '">' +
+                '<p class="chairTitle">' + hairdressers[y - 1] + '</p>');
+            for (var i = 14; i <= 36; i++) {
+                var alltime = i * 30;
+                var hour = Math.floor(alltime / 60);
+                var minutes = alltime % 60;
+                if (minutes == 0) {
+                    minutes = '00';
                 }
-                timeDisplay.append('</div>');
-                timeSelection();
+                minutes = ':' + minutes;
+                if (hour < 10) {
+                    hour = '0' + hour;
+                }
+                var time = hour + '' + minutes;
+                $("#chair" + y).append('<div id="chair' + y + i + '" class="timeline availableTime"><p>' + time + '</p></div>');
             }
+            timeDisplay.append('</div>');
+            treatmentSelection();
+        }
         $.ajax({
             type: "post",
             url: "../../controller/php/agenda.php",
@@ -77,10 +74,28 @@ $(document).ready(function () {
                 }
             });
 
-        });
+        }).done(checkDeletable(date));
     }
 
+    function checkDeletable(date){
+        $.ajax({
+            type: "post",
+            url: "../../controller/php/agenda.php",
+            data: {checkDeletable: true, date: date}
+        }).done(function (responsedata){
+            var removeAbleTimes = JSON.parse(responsedata).substr(1).split("_");
+            removeAbleTimes.forEach(function(item){
+                var deletableStartTime = item.split("-");
+                var deletableEndTime = deletableStartTime[1].toString().slice(5,8);
+                deletableStartTime = deletableStartTime[0].toString().slice(5,8);
+                var starttime = deletableStartTime;
+                for(deletableStartTime; deletableStartTime <= deletableEndTime; deletableStartTime++){
+                    $("#chair"+deletableStartTime+"").addClass("removeAbleTime").data({"starttime":starttime,"endtime":deletableEndTime});
+                }
+            });
 
+        });
+    }
 
 
     function getOptions(date) {
@@ -101,12 +116,16 @@ $(document).ready(function () {
                 $(".nameOptions").append("<option value='" + optionsObj['names'][i]['id'] + "'>" + optionsObj['names'][i]['name'] + "</option>");
             }
             namesDiv.append("</select>");
-            treatmentDiv.append("<select class='form-control treatmentOptions'>");
+            treatmentDiv.append("<select id='treatmentOptions' class='form-control treatmentOptions'>");
             $(".treatmentOptions").append("<option value='emptyOption'>Choose a treatment</option>");
 
             //here we generate the options for the treatments based upon an array sent via json
             for (var i = 0; i < optionsObj['treatments'].length; i++) {
-                $(".treatmentOptions").append("<option value='" + optionsObj['treatments'][i]['id'] + "'>" + optionsObj['treatments'][i]['name'] + "</option>");
+                var treatmentId = optionsObj['treatments'][i]['id'];
+                var treatmentName = optionsObj['treatments'][i]['name'];
+                var treatmentDuration = optionsObj['treatments'][i]['duration'];
+                treatments[treatmentId] = {name:treatmentName, duration:treatmentDuration};
+                $(".treatmentOptions").append("<option value='" + treatmentId + "'>" + treatmentName + "</option>");
             }
             treatmentDiv.append("</select>");
 
@@ -137,46 +156,112 @@ $(document).ready(function () {
         //add the month to the top of the page
         $(".monthTitle").html("<h2>" + monthNames[month] + " " + year + "</h2>");
         //get amount of days in this month.
-        var days = new Date(year, month++, 0).getDate();
+        var days = new Date(year, month+1, 0).getDate();
         //Here i generate all the days and add an id corrosponding to the month and day to them.
         for (var i = 1; i <= days; i++) {
-            $(".agenda").append("<div class='days' id='" + i + '-' + month + '-' + year + "'></div>");
-            $("#" + i + '-' + month + '-' + year + "").html("<p class='daynumbers'>" + i + "</p>");
+            $(".agenda").append("<div class='days' id='" + i + '-' + (month+1) + '-' + year + "'></div>");
+            $("#" + i + '-' + (month+1) + '-' + year + "").html("<p class='daynumbers'>" + i + "</p>");
         }
         $(".days").on("click", getDay);
     }
 
 //Here we enable the selection of a time, after the times are created so the classes are assigned properly
-
-    function timeSelection(){
+    function treatmentSelection(){
+        $(".treatmentDiv").on("change",'#treatmentOptions', function(){
+            var selectedTreatment = $(this).find(":selected").val();
+            if(selectedTreatment == 'emptyOption'){
+                var duration = 0;
+            }else{
+                var duration = treatments[selectedTreatment].duration;
+            }
+            timeSelection(duration);
+        });
+    }
+    // this enables the possiblity of a treament being any length and still working.
+    function timeSelection(duration){
+        var available = true;
+        $(".availableTime").unbind("mouseenter");
         $(".availableTime").each(function () {
-            $(this).mousedown(function () {
-                hairdresserId = $(this).parent().attr('id');
-                if (selectedStartTime) {
-                    $(".alertMessage").html("<p>Selecteer alstublieft maar eén tijd per afspraak.</p>");
+            $(this).mouseenter(function (){
+                if(!selected){
+                    var id = $(this)[0].id;
+                    selectedStartTime = parseInt(id.substr(id.length - 3));
+                    selectedEndTime = selectedStartTime + duration;
+                    var loopTime = selectedStartTime + duration -1;
+                    if(loopTime.toString().substr(-2) <= 36 && $("#chair"+loopTime).hasClass("availableTime")){
+                        for(var i = selectedStartTime; i <= loopTime; i++){
+                            if($("#chair" + i).hasClass("occupiedTime")){
+                                available = false;
+                                $(".availableTime").css("background-color", "white");
+                                $(".occupiedTime").css("background-color", "red");
+                                $(".timeShadow").removeClass("timeShadow");
+                                return;
+                            }else{
+                                available = true;
+                            }
+                            $("#chair" + i).addClass("timeShadow");
+                            $(this).on('click', function(){
+                                if(!available) return;
+                                for(var y = selectedStartTime; y <= loopTime; y++) {
+                                    $("#chair" + y).css('background-color', 'green');
+                                }
+                                $(".planTimeBtn").show();
+                                $(".availableTime").removeClass("timeShadow");
+                                selected = true;
+                                $(".availableTime").on('click', function(){
+                                    selected = false;
+                                    $(".availableTime").css("background-color", "white");
+                                    $(".occupiedTime").css("background-color", "red");
+                                    $(".planTimeBtn").hide();
+                                });
+                            });
+                        }
+                    }
+
+
                 }
-                selectedStartTime = $(this);
-                $(".selectedTime").each(function () {
-                    $(this).removeClass("selectedTime").addClass("availableTime");
-                });
-                $(this).removeClass("availableTime").addClass("selectedTime");
-                $(".availableTime").on("mouseenter", function () {
-                    $(this).removeClass("availableTime").addClass("selectedTime");
-                });
             });
-            $(this).mouseup(function () {
-                selectedEndTime = $(this);
-                $(".availableTime").off("mouseenter");
+            $(this).mouseleave(function(){
+                if(!selected) {
+                    $(".availableTime").removeClass("timeShadow");
+                }
             });
+
         });
 
     }
+    $(".timeDisplay").on("click",".timetable > .occupiedTime", function(){
+        $(".removeAbleTime").on("click", function(){
+            $(".removeAbleTime").css("background-color", "red");
+            var starttime = $(this).data("starttime");
+            var endtime = $(this).data("endtime");
+            for(var i = starttime; i <= endtime; i++){
+                $("#chair"+ i).css("background-color","darkred");
+            }
+            $(".removeTimeBtn").show();
+            $(".removeTimeBtn").on("click", function(){
+                $.ajax({
+                    type: "post",
+                    url: "../../controller/php/agenda.php",
+                    data: {
+                        removeTime: true,
+                        starttime: starttime,
+                        endtime: endtime,
+                        date: date
+                    }
+                }).done(function (responsedata) {
+                    location.reload();
+                });
+            });
+        });
+    });
+
 
     $(".planTimeBtn").on("click", function () {
         var treatmentId = $(".treatmentOptions").val();
-        var starttime = selectedStartTime[0].id.substr(5).substr(-2);
-        var endtime = selectedEndTime[0].id.substr(5).substr(-2);
-        hairdresserId = hairdresserId.slice(5,6);
+        var starttime = selectedStartTime.toString().substr(1);
+        var endtime = selectedEndTime.toString().substr(1)-1;
+        hairdresserId = selectedStartTime.toString().slice(0,1);
         $.ajax({
             type: "post",
             url: "../../controller/php/agenda.php",
@@ -193,3 +278,4 @@ $(document).ready(function () {
         });
     });
 });
+

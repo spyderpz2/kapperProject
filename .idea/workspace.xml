@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="optimized the reservation system">
+    <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="Fixed the reservation system, removed the chair system and changed it into each hairdresser having its own chair">
+      <change afterPath="$PROJECT_DIR$/View/css/footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/php/contact.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/php/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/js/agenda.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/js/agenda.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/php/Agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/php/Agenda.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/css/agenda.css" beforeDir="false" afterPath="$PROJECT_DIR$/View/css/agenda.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/View/css/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/js/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/View/js/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/php/agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/agenda.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/php/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/php/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/home.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +162,33 @@
       <workItem from="1575573440885" duration="1184000" />
       <workItem from="1575625421607" duration="1341000" />
       <workItem from="1575732318643" duration="1190000" />
-      <workItem from="1575881702230" duration="6272000" />
+      <workItem from="1575881702230" duration="7207000" />
+      <workItem from="1575975544291" duration="1182000" />
+      <workItem from="1576226581078" duration="963000" />
+      <workItem from="1576322423172" duration="784000" />
+      <workItem from="1576490846327" duration="2776000" />
+      <workItem from="1576668720307" duration="3562000" />
+      <workItem from="1576829328977" duration="2929000" />
+      <workItem from="1577539036761" duration="588000" />
+      <workItem from="1577632317237" duration="591000" />
+      <workItem from="1577966165393" duration="2278000" />
+      <workItem from="1578299760317" duration="4164000" />
+      <workItem from="1578402243709" duration="4750000" />
+      <workItem from="1578489894676" duration="6185000" />
+      <workItem from="1578573349434" duration="2646000" />
+      <workItem from="1578644049928" duration="2516000" />
+      <workItem from="1578739779401" duration="3489000" />
+      <workItem from="1578836181476" duration="7642000" />
+      <workItem from="1578904104691" duration="7539000" />
+      <workItem from="1578933471169" duration="664000" />
+      <workItem from="1579008266151" duration="1131000" />
+      <workItem from="1579038551340" duration="551000" />
+      <workItem from="1579082652295" duration="2564000" />
+      <workItem from="1579176402993" duration="1085000" />
+      <workItem from="1579203977325" duration="2178000" />
+      <workItem from="1579248631492" duration="10073000" />
+      <workItem from="1579276628581" duration="4811000" />
+      <workItem from="1579344972180" duration="10915000" />
     </task>
     <task id="LOCAL-00001" summary="updated the calander">
       <created>1570633440963</created>
@@ -193,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573548637909</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed the reservation system, removed the chair system and changed it into each hairdresser having its own chair">
+      <created>1575895708179</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575895708179</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +255,7 @@
     <MESSAGE value="updated the calander" />
     <MESSAGE value="Changed the chairs system" />
     <MESSAGE value="optimized the reservation system" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimized the reservation system" />
+    <MESSAGE value="Fixed the reservation system, removed the chair system and changed it into each hairdresser having its own chair" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the reservation system, removed the chair system and changed it into each hairdresser having its own chair" />
   </component>
 </project>
