@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bd3844f-bb2b-4c16-bbbc-7b9f41cf4832" name="Default" comment="Fixed the reservation system, removed the chair system and changed it into each hairdresser having its own chair">
-      <change afterPath="$PROJECT_DIR$/View/css/footer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/php/contact.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/php/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/js/agenda.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/js/agenda.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/php/Agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/php/Agenda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/css/agenda.css" beforeDir="false" afterPath="$PROJECT_DIR$/View/css/agenda.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/View/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/js/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/View/js/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/php/agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/agenda.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/php/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/php/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/php/home.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,6 +179,7 @@
       <workItem from="1579248631492" duration="10073000" />
       <workItem from="1579276628581" duration="4811000" />
       <workItem from="1579344972180" duration="10915000" />
+      <workItem from="1579426802889" duration="2542000" />
     </task>
     <task id="LOCAL-00001" summary="updated the calander">
       <created>1570633440963</created>

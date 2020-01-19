@@ -1,4 +1,11 @@
 $(document).ready(function () {
+
+    if(confirm("\t\t\t\tAccepteert u cookies ? \n\n" +
+        " De cookies zullen worden gebruikt om de informatie \n " +
+        "van u gemaakte afspraak op te slaan zodat u deze later weer kunt verwijderen")){
+    }else{
+        window.location.replace('home.php');
+    }
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
     var date = new Date();
