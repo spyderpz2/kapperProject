@@ -1,7 +1,25 @@
 body, html{
     min-height:100vh;
 }
-
+.kapperInfo{
+    width: 30vw;
+    margin-top: 10vh;
+    margin-left: 8vw;
+    background-color:darkgray;
+    padding: 1%;
+    display: inline-block;
+    margin-bottom: 10vh;
+}
+.kapperImg{
+    min-width: 30vw;
+    margin-top: 10vh;
+    margin-right: 13vw;
+    margin-left: 8vw;
+    min-height:30vh;
+    background-color:darkgray;
+    padding:1%;
+    display:inline-block;
+}
 .title{
     font-size:3vw;
 }
